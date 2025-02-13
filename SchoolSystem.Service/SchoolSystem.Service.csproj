@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolSystem.Domain\SchoolSystem.Domain.csproj" />
+    <ProjectReference Include="..\SchoolSystem.Infrastructure\SchoolSystem.Infrastructure.csproj" />
 
   </ItemGroup>
 

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolSystem.Infrastructure.Data;
+using SchoolSystem.Infrastructure;
+using SchoolSystem.Service;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,11 @@ builder.Services.AddDbContext<SchoolSystemDbContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("Dev"));
 });
+
+// Injecting Dependencies
+builder.Services.InjectingInfrastructureDependencies();
+builder.Services.InjectingServiceDependencies();
+builder.Services.InjectingCoreDependencies();
 
 var app = builder.Build();
 
