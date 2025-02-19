@@ -1,9 +1,4 @@
 ﻿using SchoolSystem.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolSystem.Infrastructure.Interfaces
 {
@@ -11,5 +6,6 @@ namespace SchoolSystem.Infrastructure.Interfaces
     {
         public Task<List<Student>> GetAllStudentsAsynch();
         public Task<Student?> GetStudentByID(int id);
+        public Task<Student?> AddStudentAsynch(Student student);
     }
 }

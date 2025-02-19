@@ -10,6 +10,7 @@ namespace SchoolSystem.Service
         public static IServiceCollection InjectingServiceDependencies(this IServiceCollection services)
         {
             services.AddTransient<IStudentService, StudentService>();
+            services.AddTransient<IDepartmentService, DepartmentService>();
             return services;
         }
     }

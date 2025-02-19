@@ -1,15 +1,8 @@
 ﻿using MediatR;
-using SchoolSystem.Core.Features.Students.Queries.Models;
 using SchoolSystem.Domain;
-using SchoolSystem.Infrastructure.Interfaces;
 using SchoolSystem.Service.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SchoolSystem.Core.Features.Students.Queries.Handlers
+namespace SchoolSystem.Core.Features.Students.Queries
 {
     public class StudentHandler : IRequestHandler<GetAllStudentQuery, List<Student>>
     {
