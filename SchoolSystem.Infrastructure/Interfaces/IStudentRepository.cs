@@ -1,11 +1,10 @@
 ﻿using SchoolSystem.Domain;
+using SchoolSystem.Infrastructure.Generics;
 
 namespace SchoolSystem.Infrastructure.Interfaces
 {
-    public interface IStudentRepository
+    public interface IStudentRepository : IGenericRepositoryAsync<Student>
     {
-        public Task<List<Student>> GetAllStudentsAsynch();
-        public Task<Student?> GetStudentByID(int id);
-        public Task<Student?> AddStudentAsynch(Student student);
+        public new Task<IEnumerable<Student>> GetAllAsync();
     }
 }

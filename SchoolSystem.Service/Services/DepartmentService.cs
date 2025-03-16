@@ -18,24 +18,22 @@ namespace SchoolSystem.Service.Services
         #endregion
 
         #region Methods
-
-        public async Task<Department?> AddDepartmentAsynch(Department department)
+        public async Task<Department> AddDepartmentAsync(Department department)
         {
-            // Implement Logic
-            return await _departmentRepository.AddDepartmentAsynch(department);
+            return await _departmentRepository.AddAsync(department);
         }
 
-        public async Task<List<Department>> GetAllDepartmentsAsynch()
+        public async Task<IEnumerable<Department>> GetAllDepartmentsAsync()
         {
             // Implement Logic
-            return await _departmentRepository.GetAllDepartmentsAsynch();
+            return await _departmentRepository.GetAllAsync();
         }
 
-        public Task<Department?> GetDepartmentByID(int id)
+        public Task<Department> GetDepartmentByIdAsync(int id)
         {
-            // Implement Logic
-            throw new NotImplementedException();
+            return _departmentRepository.GetByIdAsync(id);
         }
+
         #endregion
     }
 }

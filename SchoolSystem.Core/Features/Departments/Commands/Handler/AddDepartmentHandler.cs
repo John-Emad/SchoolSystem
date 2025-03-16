@@ -17,7 +17,7 @@ namespace SchoolSystem.Core.Features.Departments.Commands
         }
         public  Task<Department?> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
         {
-            return  _departmentRepository.AddDepartmentAsynch(request.Department);
+            return  _departmentRepository.AddAsync(request.Department);
         }
     }
 }

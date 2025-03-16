@@ -3,7 +3,7 @@ using SchoolSystem.Domain;
 
 namespace SchoolSystem.Core.Features.Students.Queries
 {
-    public class GetAllStudentQuery : IRequest<List<Student>>
+    public class GetAllStudentQuery : IRequest<IEnumerable<Student>>
     {
     }
 }

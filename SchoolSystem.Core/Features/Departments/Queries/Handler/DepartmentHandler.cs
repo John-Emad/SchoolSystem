@@ -4,7 +4,7 @@ using SchoolSystem.Service.Interfaces;
 
 namespace SchoolSystem.Core.Features.Departments.Queries.Handler
 {
-    public class DepartmentHandler : IRequestHandler<GetAllDepartmentQuery, List<Department>>
+    public class DepartmentHandler : IRequestHandler<GetAllDepartmentQuery, IEnumerable<Department>>
     {
         private readonly IDepartmentService _departmentService;
 
@@ -12,9 +12,9 @@ namespace SchoolSystem.Core.Features.Departments.Queries.Handler
         {
             _departmentService = departmentService;
         }
-        public async Task<List<Department>> Handle(GetAllDepartmentQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<Department>> Handle(GetAllDepartmentQuery request, CancellationToken cancellationToken)
         {
-            return await _departmentService.GetAllDepartmentsAsynch();
+            return await _departmentService.GetAllDepartmentsAsync();
         }
     }
 }

@@ -4,14 +4,14 @@ using SchoolSystem.Service.Interfaces;
 
 namespace SchoolSystem.Core.Features.Students.Queries
 {
-    public class StudentHandler : IRequestHandler<GetAllStudentQuery, List<Student>>
+    public class GetAllStudentsHandler : IRequestHandler<GetAllStudentQuery, IEnumerable<Student>>
     {
         #region Fields
             private readonly IStudentService _studentService;
         #endregion
 
         #region Constructors
-        public StudentHandler(IStudentService studentService)
+        public GetAllStudentsHandler(IStudentService studentService)
         {
             _studentService = studentService;
         }
@@ -19,9 +19,9 @@ namespace SchoolSystem.Core.Features.Students.Queries
         #endregion
 
         #region Methods
-            public async Task<List<Student>> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)
+            public async Task<IEnumerable<Student>> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)
             {
-                return await _studentService.GetAllStudentsAsynch();
+                return await _studentService.GetAllStudentsAsync();
             }
         #endregion
     }
