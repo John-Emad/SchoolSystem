@@ -33,15 +33,14 @@ namespace SchoolSystem.API.Controllers
         {
             var studentToAdd = _mapper.Map<Student>(student);
             var studentAdded = await _mediator.Send(new AddStudentCommand(studentToAdd));
-            return Ok(_mapper.Map<StudentReadDto>(studentAdded));
+            return Ok(studentAdded);
         }
 
         [HttpGet("/Student/List")]
         public async Task<IActionResult> GetAllStudents()
         {
             var response = await _mediator.Send(new GetAllStudentQuery());
-            var result = _mapper.Map<List<StudentReadDto>>(response);
-            return Ok(result);
+            return Ok(response);
         }
 
         [HttpGet("/Student/")]

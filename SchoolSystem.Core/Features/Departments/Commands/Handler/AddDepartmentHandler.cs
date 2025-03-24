@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
+using SchoolSystem.Core.Response;
 using SchoolSystem.Domain;
 using SchoolSystem.Infrastructure.Interfaces;
 
 namespace SchoolSystem.Core.Features.Departments.Commands
 {
-    public class AddDepartmentHandler : IRequestHandler<AddDepartmentCommand, Department>
+    public class AddDepartmentHandler :ResponseHandler, IRequestHandler<AddDepartmentCommand, Response<Department>>
     {
         private readonly IDepartmentRepository _departmentRepository;
         private readonly IMapper _mapper;
@@ -15,9 +16,10 @@ namespace SchoolSystem.Core.Features.Departments.Commands
             _departmentRepository = departmentRepository;
             _mapper = mapper;
         }
-        public  Task<Department?> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
+        public  async Task<Response<Department?>> Handle(AddDepartmentCommand request, CancellationToken cancellationToken)
         {
-            return  _departmentRepository.AddAsync(request.Department);
+            var addedDepartment = await _departmentRepository.AddAsync(request.Department);
+            return Created(addedDepartment) ;
         }
     }
 }

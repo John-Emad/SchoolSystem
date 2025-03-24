@@ -6,6 +6,6 @@ namespace SchoolSystem.Service.Interfaces
     {
         public Task<Student?> AddStudentAsync(Student student);
         public Task<Student> GetStudentByIdAsync(int id);
-        public Task<IEnumerable<Student>> GetAllStudentsAsync();
+        public Task<List<Student>> GetAllStudentsAsync();
     }
 }

@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
+using SchoolSystem.Core.Response;
 using SchoolSystem.Domain;
+using SchoolSystem.Domain.DTOs;
 using SchoolSystem.Infrastructure.Interfaces;
 
 namespace SchoolSystem.Core.Features.Students.Commands
 {
-    public class AddStudentHandler : IRequestHandler<AddStudentCommand, Student>
+    public class AddStudentHandler : ResponseHandler, IRequestHandler<AddStudentCommand, Response<StudentReadDto>>
     {
         private readonly IStudentRepository _studentRepository;
         private readonly IMapper _mapper;
@@ -15,9 +17,11 @@ namespace SchoolSystem.Core.Features.Students.Commands
             _studentRepository = studentRepository;
             _mapper = mapper;
         }
-        public Task<Student?> Handle(AddStudentCommand request, CancellationToken cancellationToken)
+        public async Task<Response<StudentReadDto?>> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
-            return _studentRepository.AddAsync(request.Student);
+            var addedStudent = await _studentRepository.AddAsync(request.Student);
+            var studentReadDto = _mapper.Map<StudentReadDto>(addedStudent);
+            return Created(studentReadDto);
         }
     }
 }

@@ -5,6 +5,6 @@ namespace SchoolSystem.Infrastructure.Interfaces
 {
     public interface IStudentRepository : IGenericRepositoryAsync<Student>
     {
-        public new Task<IEnumerable<Student>> GetAllAsync();
+        public new Task<List<Student>> GetAllAsync();
     }
 }
