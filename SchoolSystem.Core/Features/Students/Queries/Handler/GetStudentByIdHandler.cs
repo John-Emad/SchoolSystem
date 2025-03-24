@@ -1,11 +1,12 @@
 ﻿using MediatR;
 using SchoolSystem.Core.Features.Students.Queries.Query;
+using SchoolSystem.Core.Response;
 using SchoolSystem.Domain;
 using SchoolSystem.Service.Interfaces;
 
 namespace SchoolSystem.Core.Features.Students.Queries.Handler
 {
-    public class GetStudentByIdHandler : IRequestHandler<GetStudentByIdQuery, Student>
+    public class GetStudentByIdHandler : ResponseHandler, IRequestHandler<GetStudentByIdQuery, Response<Student>>
     {
         #region Fields
         private readonly IStudentService _studentService;
@@ -19,9 +20,9 @@ namespace SchoolSystem.Core.Features.Students.Queries.Handler
         #endregion
 
         #region Methods
-        public async Task<Student> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<Response<Student>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
         {
-            return await _studentService.GetStudentByIdAsync(request.id);
+            return Success(await _studentService.GetStudentByIdAsync(request.id));
         }
         #endregion
     }

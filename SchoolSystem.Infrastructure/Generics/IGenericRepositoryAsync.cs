@@ -9,7 +9,7 @@ namespace SchoolSystem.Infrastructure.Generics
         Task AddRangeAsync(ICollection<T> entities);
         Task UpdateAsync(T entity);
         Task UpdateRangeAsync(ICollection<T> entities);
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<List<T>> GetAllAsync();
         Task<T> GetByIdAsync(object id);
         Task DeleteAsync(T entity);
         Task DeleteRangeAsync(ICollection<T> entities);

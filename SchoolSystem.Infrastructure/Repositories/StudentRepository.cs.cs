@@ -20,7 +20,7 @@ namespace SchoolSystem.Infrastructure.Repositories
         #endregion
 
         #region Methods
-        override public async Task<IEnumerable<Student>> GetAllAsync()
+        override public async Task<List<Student>> GetAllAsync()
         {
             return await _studentsDbSet.Include(s => s.Department).ToListAsync();
         }

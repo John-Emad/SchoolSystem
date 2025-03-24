@@ -5,6 +5,6 @@ namespace SchoolSystem.Infrastructure.Interfaces
 {
     public interface IDepartmentRepository : IGenericRepositoryAsync<Department>
     {
-        public new Task<IEnumerable<Department>> GetAllAsync();
+        public new Task<List<Department>> GetAllAsync();
     }
 }

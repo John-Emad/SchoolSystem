@@ -27,15 +27,14 @@ namespace SchoolSystem.API.Controllers
         {
             var departmentToAdd = _mapper.Map<Department>(department);
             var departmentAdded = await _mediator.Send(new AddDepartmentCommand(departmentToAdd));
-            return Ok(_mapper.Map<DepartmentWriteDto>(department));
+            return Ok(departmentAdded);
         }
 
         [HttpGet("/Department/List")]
         public async Task<IActionResult> GetAllDepartments()
         {
-            var response = await _mediator.Send(new GetAllDepartmentQuery());
-            var result = _mapper.Map<List<DepartmentReadDto>>(response);
-            return Ok(result);
+            var response = await _mediator.Send(new GetAllDepartmentsQuery());
+            return Ok(response);
         }
 
         [HttpGet("/Department/")]

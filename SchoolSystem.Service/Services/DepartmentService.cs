@@ -23,7 +23,7 @@ namespace SchoolSystem.Service.Services
             return await _departmentRepository.AddAsync(department);
         }
 
-        public async Task<IEnumerable<Department>> GetAllDepartmentsAsync()
+        public async Task<List<Department>> GetAllDepartmentsAsync()
         {
             // Implement Logic
             return await _departmentRepository.GetAllAsync();
