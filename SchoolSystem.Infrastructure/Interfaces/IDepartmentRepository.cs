@@ -1,11 +1,10 @@
 ﻿using SchoolSystem.Domain;
+using SchoolSystem.Infrastructure.Generics;
 
 namespace SchoolSystem.Infrastructure.Interfaces
 {
-    public interface IDepartmentRepository
+    public interface IDepartmentRepository : IGenericRepositoryAsync<Department>
     {
-        Task<List<Department>> GetAllDepartmentsAsynch();
-        Task<Department?> GetDepartmentByID(int id);
-        Task<Department?> AddDepartmentAsynch(Department department);
+        public new Task<IEnumerable<Department>> GetAllAsync();
     }
 }

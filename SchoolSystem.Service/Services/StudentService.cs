@@ -18,16 +18,19 @@ namespace SchoolSystem.Service.Services
         #endregion
 
         #region Methods
-        public async Task<List<Student>> GetAllStudentsAsynch()
+        public async Task<Student?> AddStudentAsync(Student student)
         {
             // Implement Logic
-            return await _studentRepository.GetAllStudentsAsynch();
+            return await _studentRepository.AddAsync(student);
         }
-
-        public async Task<Student?> AddStudentAsynch(Student student)
+        public async Task<IEnumerable<Student>> GetAllStudentsAsync()
         {
             // Implement Logic
-            return await _studentRepository.AddStudentAsynch(student);
+            return await _studentRepository.GetAllAsync();
+        }
+        public async Task<Student> GetStudentByIdAsync(int id)
+        {
+            return await _studentRepository.GetByIdAsync(id);
         }
         #endregion
 

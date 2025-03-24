@@ -17,7 +17,7 @@ namespace SchoolSystem.Core.Features.Students.Commands
         }
         public Task<Student?> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
-            return _studentRepository.AddStudentAsynch(request.Student);
+            return _studentRepository.AddAsync(request.Student);
         }
     }
 }

@@ -1,40 +1,30 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolSystem.Domain;
 using SchoolSystem.Infrastructure.Data;
+using SchoolSystem.Infrastructure.Generics;
 using SchoolSystem.Infrastructure.Interfaces;
 
 namespace SchoolSystem.Infrastructure.Repositories
 {
-    public class StudentRepository : IStudentRepository
+    public class StudentRepository : GenericRepositoryAsync<Student>, IStudentRepository
     {
         #region Fields
-        private readonly SchoolSystemDbContext _schoolSystemDbContext;
+        private readonly DbSet<Student> _studentsDbSet;
         #endregion
 
         #region Constructors
-        public StudentRepository(SchoolSystemDbContext schoolSystemDbContext)
+        public StudentRepository(SchoolSystemDbContext schoolSystemDbContext) : base(schoolSystemDbContext)
         {
-            _schoolSystemDbContext = schoolSystemDbContext;
+            _studentsDbSet = schoolSystemDbContext.Set<Student>();
         }
         #endregion
 
         #region Methods
-        public async Task<List<Student>> GetAllStudentsAsynch()
+        override public async Task<IEnumerable<Student>> GetAllAsync()
         {
-            return await _schoolSystemDbContext.Students.Include(s => s.Department).ToListAsync();
+            return await _studentsDbSet.Include(s => s.Department).ToListAsync();
         }
 
-        public async Task<Student?> GetStudentByID(int id)
-        {
-            return await _schoolSystemDbContext.Students.FirstOrDefaultAsync(s => s.StudID == id);
-        }
-
-        public async Task<Student?> AddStudentAsynch(Student student)
-        {
-            var result = await _schoolSystemDbContext.Students.AddAsync(student);
-            await _schoolSystemDbContext.SaveChangesAsync();
-            return result.Entity;
-        }
         #endregion
 
     }

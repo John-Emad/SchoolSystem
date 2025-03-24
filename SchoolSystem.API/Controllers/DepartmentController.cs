@@ -6,6 +6,7 @@ using SchoolSystem.Core.Features.Departments.Queries;
 using SchoolSystem.Core.Features.Departments.Commands;
 using SchoolSystem.Domain;
 using SchoolSystem.Domain.DTOs;
+using SchoolSystem.Core.Features.Departments.Queries.Query;
 
 namespace SchoolSystem.API.Controllers
 {
@@ -21,13 +22,6 @@ namespace SchoolSystem.API.Controllers
             _mediator = mediator;
             _mapper = mapper;
         }
-        [HttpGet("/Department/List")]
-        public async Task<IActionResult> GetAllDepartments()
-        {
-            var response = await _mediator.Send(new GetAllDepartmentQuery());
-            var result = _mapper.Map<List<DepartmentReadDto>>(response);
-            return Ok(result);
-        }
         [HttpPost("/Department/AddNew")]
         public async Task<IActionResult> Post([FromBody] DepartmentWriteDto department)
         {
@@ -35,5 +29,21 @@ namespace SchoolSystem.API.Controllers
             var departmentAdded = await _mediator.Send(new AddDepartmentCommand(departmentToAdd));
             return Ok(_mapper.Map<DepartmentWriteDto>(department));
         }
+
+        [HttpGet("/Department/List")]
+        public async Task<IActionResult> GetAllDepartments()
+        {
+            var response = await _mediator.Send(new GetAllDepartmentQuery());
+            var result = _mapper.Map<List<DepartmentReadDto>>(response);
+            return Ok(result);
+        }
+
+        [HttpGet("/Department/")]
+        public async Task<IActionResult> GetDepartmentById(int id)
+        {
+            var response = await _mediator.Send(new GetDepartmentByIdQuery(id));
+            return Ok(response);
+        }
+
     }
 }
